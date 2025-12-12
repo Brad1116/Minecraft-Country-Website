@@ -2,25 +2,18 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f4f4f4; /* 淺色模式背景 */
+    color: #333; /* 淺色模式文字 */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
     background-color: #333;
     color: white;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-nav a:hover {
-    text-decoration: underline;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 main {
@@ -48,4 +41,76 @@ footer {
     margin-top: 2rem;
     font-size: 0.8rem;
     color: #666;
+}
+
+/* --- 1. 漢堡菜單與導覽列 --- */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.menu-toggle {
+    display: none; /* 預設隱藏漢堡圖示 (桌面版) */
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* RWD: 當螢幕寬度小於 768px 時 */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* 顯示漢堡圖示 */
+    }
+
+    nav .nav-links {
+        display: none; /* 預設隱藏連結 */
+        flex-direction: column;
+        width: 100%;
+        background-color: #444;
+        position: absolute;
+        top: 60px; /* 根據 header 高度調整 */
+        left: 0;
+        padding: 1rem 0;
+    }
+
+    nav.open .nav-links {
+        display: flex; /* 點擊後顯示連結 */
+    }
+
+    .nav-links a {
+        margin: 10px 20px;
+    }
+}
+
+/* --- 4. 夜覽模式 (Dark Mode) --- */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode header {
+    background-color: #1f1f1f;
+}
+
+body.dark-mode nav .nav-links {
+    background-color: #1f1f1f;
+}
+
+body.dark-mode main {
+    background-color: #1f1f1f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode footer {
+    color: #a0a0a0;
+}
+
+body.dark-mode .disclaimer {
+    background-color: #3e3e3e;
+    border-color: #555;
+    color: #e0e0e0;
 }
